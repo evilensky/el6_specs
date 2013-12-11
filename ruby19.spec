@@ -25,7 +25,7 @@ straight-forward, and extensible.
 %build
 export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"
 
-./configure --prefix=/opt/rubies/ruby-%{rubyver}-%{rubyminorver}
+./configure --prefix=/opt/ruby/ruby-%{rubyver}-%{rubyminorver}
 
 make %{?_smp_mflags}
 

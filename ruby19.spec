@@ -1,5 +1,6 @@
 %define rubyver 1.9.3
-%define rubyminorver p484
+%define rubyminorver p545
+%define prefix /opt/ruby/ruby-%{rubyver}-%{rubyminorver}
 
 Name: ruby19
 Version: %{rubyver}%{rubyminorver}
@@ -25,7 +26,8 @@ straight-forward, and extensible.
 %build
 export CFLAGS="$RPM_OPT_FLAGS -Wall -fno-strict-aliasing"
 
-./configure --prefix=/opt/ruby/ruby-%{rubyver}-%{rubyminorver}
+#./configure --prefix=/opt/ruby/ruby-%{rubyver}-%{rubyminorver}
+./configure --prefix=%{prefix} --disable-rpath --without-X11 --without-tk
 
 make %{?_smp_mflags}
 
@@ -41,7 +43,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-, root, root)
-/opt/ruby/ruby-%{rubyver}-%{rubyminorver}
+%{prefix}
 
 %changelog
 * Wed Dec 11 2013 Eugene Vilensky <evilensky@gmail.com>
